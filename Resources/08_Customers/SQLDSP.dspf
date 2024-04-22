@@ -1,0 +1,44 @@
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R RECORD1
+     A                                  2 27'SQL Demonstration'
+     A                                  5 14'Enter Customer ID:'
+     A            CUSTIDIN       5   B  5 33
+     A          R RECORD2
+     A                                      CF03(03)
+     A                                      OVERLAY
+     A                                  8  7'Cust ID'
+     A                                  7 19'Customer'
+     A                                  7 56'Discount'
+     A                                  8 37'City'
+     A                                  8 57'Rate'
+     A                                  8 20'Name'
+     A            CUSTID    R        O 10  8REFFLD(CUSTOMER/CUSTID BCI433LIB/CU-
+     A                                      STOMER)
+     A            NAME      R        O 10 18REFFLD(CUSTOMER/NAME BCI433LIB/CUST-
+     A                                      OMER)
+     A            SHIPCITY  R        O 10 37REFFLD(CUSTOMER/SHIPCITY BCI433LIB/-
+     A                                      CUSTOMER)
+     A N99        DISCOUNT  R        O 10 57REFFLD(CUSTOMER/DISCOUNT BCI433LIB/-
+     A                                      CUSTOMER)
+     A  99                             10 63'Unknown Rate'
+     A  99                                  DSPATR(RI)
+     A                                 21  9'F3 - Exit'
+     A          R RECORD3
+     A                                      CF03(03)
+     A                                      OVERLAY
+     A                                 12 24'No Row Matches That Customer ID'
+     A                                      DSPATR(RI)
+     A                                 20 15'F3 - Exit'
+     A          R RECORD4
+     A                                      CF03(03)
+     A                                      OVERLAY
+     A                                 12 24'Unexpeced Error Occurred'
+     A                                      DSPATR(RI)
+     A                                 19 19'F3 - Exit'
+     A          R RECORD5
+     A                                 13 24'Result of Select more than one row'
+     A                                      DSPATR(RI)
+     A                                 18  9'This screen does not give you acce-
+     A                                      ss to F3 to exit'
+     A                                 20  9'Use Shift + ESC and then enter a 2-
+     A                                       to exit.' 

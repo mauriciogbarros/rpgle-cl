@@ -1,0 +1,55 @@
+     A          R TITLE
+     A                                  1 41'Best Selling Genre''s'
+     A                                  1120'Page:'
+     A                                  1126PAGNBR
+     A                                  3  3 ' '
+     A                                  1  4'System Name:'
+     A            SYSTEMNAME    10      1 18
+     A            REPRTTITLE    15      1 71
+     A            REPORTDATE      L     1107
+     A          R COLHDG                    SPACEB(1)
+     A                                      SPACEA(1)
+     A                                     6'Genre'
+     A                                    23'Book Id'
+     A                                    45'Book Title'
+     A                                    85'Duration'
+     A                                   102'Author'
+     A                                   128'Unit'
+     A                                    85'HH:MM:SS'
+     A                                      SPACEB(1)
+     A                                   128'Price'
+     A          R DETAIL
+     A            BOOKID    R             24REFFLD(AUDIBLEBKS/BOOKID +
+     A                                      BCI433LIB/AUDIBLEBKS)
+     A                                      SPACEB(1)
+     A            BOOK      R             34REFFLD(AUDIBLEBKS/BOOK BCI433LIB/AU-
+     A                                      DIBLEBKS)
+     A            DURATION  R             85REFFLD(AUDIBLEBKS/DURATION +
+     A                                      BCI433LIB/AUDIBLEBKS)
+     A            AUTHOR    R             95REFFLD(AUDIBLEBKS/AUTHOR +
+     A                                      BCI433LIB/AUDIBLEBKS)
+     A            PRICE     R            127REFFLD(AUDIBLEBKS/PRICE BCI433LIB/A-
+     A                                      UDIBLEBKS)
+     A                                      EDTCDE(1)
+     A          R TOTALS
+     A                                      SPACEB(2)
+     A                                      SPACEA(2)
+     A                                    19'Total Books:'
+     A            TOTALBOOKS     3  0     32EDTCDE(1)
+     A                                    38'Valued at:'
+     A            TOTALPRICE     6  2     49EDTCDE(1 $)
+     A          R GENREREC
+     A            GENRE     R              1
+     A                                      REFFLD(AUDIBLEBKS/GENRE BCI433LIB/A-
+     A                                      UDIBLEBKS)
+
+     A*%%RS+<record-sequences>
+     A*%%RS+ <sequence name="Untitled">
+     A*%%RS+  <device type="printer" width="132" height="66" />
+     A*%%RS+  <record-write record-format="TITLE" />
+     A*%%RS+  <record-write record-format="COLHDG" />
+     A*%%RS+  <record-write record-format="GENREREC" />
+     A*%%RS+  <record-write record-format="DETAIL" />
+     A*%%RS+  <record-write record-format="TOTALS" />
+     A*%%RS+ </sequence>
+     A*%%RS </record-sequences> 

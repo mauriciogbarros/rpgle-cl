@@ -1,0 +1,47 @@
+
+CHAIN Operation with a File Name
+
+       *..1....+....2....+....3....+....4....+....5....+....6....+....7...+....
+ *
+ *  The CHAIN operation retrieves the first record from the file,
+ *  FILEX, that has a key field with the same value as the search
+ *  argument KEY (factor 1).
+
+ /FREE
+     CHAIN  KEY  FILEX;
+   //  If a record with a key value equal to the search argument is
+  //  not found, %FOUND returns '0' and the EXSR operation is
+  //  processed. If a record is found with a key value equal
+  //  to the search argument, the program continues with
+  //  the calculations after the EXSR operation.
+      IF  NOT %FOUND;
+        EXSR  Not_Found;
+     ENDIF;
+ /END-FREE
+
+       Example of Search on Keyed Input/Output Operations
+
+A..........T.Name++++++RLen++TDpB......Functions++++++++++++++++++
+A          R CUSTR
+A            NAME         100A
+A            ZIP           10A
+A            ADDR         100A
+A          K NAME
+A          K ZIP
+
+
+FFilename++IPEASF.....L.....A.Device+.Keywords+++++++++++++++++++++++++
+Fcustfile  if   e           k disk    rename(CUSTR:custRec)
+DName+++++++++++ETDsFrom+++To/L+++IDc.Keywords+++++++++++++++++++++++++
+D custRecKeys     ds                  likerec(custRec : *key)
+ ...
+ /free
+         // custRecKeys is a qualified data structure
+         custRecKeys.name = customer;
+         custRecKeys.zip = zipcode;
+         // the *KEY data structure is used as the search argument for CHAIN
+         chain %kds(custRecKeys) custRec;
+ /end-free
+
+
+ 

@@ -1,0 +1,100 @@
+PGM
+  DCLF LAB4DSP
+  DCL &INLPGM *CHAR 10
+  DCL &INLPGMLIB *CHAR 10
+  DCL &CRTAUT *CHAR 10
+  DCL &USRPRF *CHAR 10
+  DCL &PRVSIGN *CHAR 13
+  DCL &DATE *CHAR 8
+  DCL &TIME *CHAR 8
+  SNDRCVF
+  DOWHILE (&IN03 = '0')
+    SELECT
+      WHEN (&OPTION = '1') CALLSUBR OPTION1
+      WHEN (&OPTION = '2') CALLSUBR OPTION2
+      WHEN (&OPTION = '3') CALLSUBR OPTION3
+      WHEN (&OPTION = '4') CALLSUBR OPTION4
+      WHEN (&OPTION = '5') CALLSUBR OPTION5
+      WHEN (&OPTION = '6') CALLSUBR OPTION6
+      WHEN (&IN21 = '1') CALL QUSCMDLN
+      OTHERWISE CHGVAR &IN30 '1'
+    ENDSELECT
+    SNDRCVF
+  ENDDO
+
+  SUBR OPTION1
+    CALL CARPAYMNT
+    CHGVAR &MSGTXT1 ('The students Car Payment RPGLE program was run')
+    CHGVAR &MSGTXT2 ('CLLE Programs can manage how an RPGLE +
+      Business Application is run')
+    IF (&IN30 = '1') THEN(CHGVAR &IN30 '0')
+    IF (&IN31 = '1') THEN(CHGVAR &IN31 '0')
+  ENDSUBR
+
+  SUBR OPTION2
+    WRKOBJPDM LIB(CB433A04) OBJATR('PF-SRC')
+    CHGVAR &MSGTXT1 ('You were given access to all the source code +
+      in your library')
+    CHGVAR &MSGTXT2 ('CLLE Programs can manage how an RPGLE +
+      Business Application is run')
+    IF (&IN30 = '1') THEN(CHGVAR &IN30 '0')
+    IF (&IN31 = '1') THEN(CHGVAR &IN31 '0')
+  ENDSUBR
+
+  SUBR OPTION3
+    CHGPRF ??INLPGM(*LIBL/CHANGETHIS)
+    CHGVAR &MSGTXT1 ('The initial program for this user profile +
+      was changed')
+    CHGVAR &MSGTXT2 ('CLLE Programs can limit the parameters you see for +
+      a command')
+    RTVUSRPRF INLPGM(&INLPGM)
+    SELECT
+      WHEN (&INLPGM *EQ '*NONE') CHGVAR &IN31 '0'
+      WHEN (&INLPGM *EQ 'STARTUP') CHGVAR &IN31 '0'
+      OTHERWISE CHGVAR &IN31 '1'
+    ENDSELECT
+    IF (&IN30 = '1') THEN(CHGVAR &IN30 '0')
+  ENDSUBR
+
+  SUBR OPTION4
+    RTVUSRPRF INLPGM(&INLPGM) INLPGMLIB(&INLPGMLIB)
+    IF (&INLPGM *EQ '*NONE') THEN(DO)
+      CHGVAR &MSGTXT1 ('The startup program for this account is NOT SET')
+    ENDDO
+    ELSE DO
+      CHGVAR &MSGTXT1 ('The startup program for this account is ' +
+        *BCAT &INLPGMLIB *TCAT '/' *CAT &INLPGM)
+    ENDDO
+    CHGVAR &MSGTXT2 ('CLLE Programs can report on the logged on user +
+      information')
+    IF (&IN30 = '1') THEN(CHGVAR &IN30 '0')
+    IF (&IN31 = '1') THEN(CHGVAR &IN31 '0')
+  ENDSUBR
+
+  SUBR OPTION5
+    DSPSYSVAL SYSVAL(QCRTAUT)
+    RTVLIBD LIB(QGPL) CRTAUT(&CRTAUT)
+    CHGVAR &MSGTXT1 ('The QGPL library Creation Authority is set to ' +
+      *BCAT &CRTAUT)
+    CHGVAR &MSGTXT2 ('CLLE Programs can report on system values and how +
+      they are used')
+    IF (&IN30 = '1') THEN(CHGVAR &IN30 '0')
+    IF (&IN31 = '1') THEN(CHGVAR &IN31 '0')
+  ENDSUBR
+
+  SUBR OPTION6
+    RTVUSRPRF RTNUSRPRF(&USRPRF) PRVSIGN(&PRVSIGN)
+    CHGVAR &DATE (%SST(&PRVSIGN 4 2) *CAT '/' +
+      *CAT %SST(&PRVSIGN 6 2) *CAT '/' +
+      *CAT %SST(&PRVSIGN 2 2))
+    CHGVAR &TIME (%SST(&PRVSIGN 8 2) *CAT ':' +
+      *CAT %SST(&PRVSIGN 10 2) *CAT ':' +
+      *CAT %SST(&PRVSIGN 12 2))
+    CHGVAR &MSGTXT1 ('Previous sign on for user was on ' +
+      *BCAT &DATE *BCAT &TIME)
+    CHGVAR &MSGTXT2 ('CLLE Programs can report on and manage the users +
+      on the system')
+    IF (&IN30 = '1') THEN(CHGVAR &IN30 '0')
+    IF (&IN31 = '1') THEN(CHGVAR &IN31 '0')
+  ENDSUBR
+ENDPGM 

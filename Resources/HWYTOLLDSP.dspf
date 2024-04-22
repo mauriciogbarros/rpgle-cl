@@ -1,0 +1,54 @@
+     A*%%TS  SD  20180124  153905  PANGBORN    REL-V7R2M0  5770-WDS
+     A*%%EC
+     A                                      DSPSIZ(24 80 *DS3)
+     A          R TOLLINFO
+     A                                  1  2USER
+     A                                  1 71DATE
+     A                                      EDTCDE(Y)
+     A                                  2 21'H I G H W A Y   4 0 8   T O L L S'
+     A                                  4 24'Trip Information'
+     A  65                              5 21'Zeroes or Blanks not allowed '
+     A  65                                  DSPATR(RI)
+     A                                  6  7'Kilometers traveled:'
+     A            KILOMETERS     3  0B  6 28
+     A  99                                  DSPATR(PR)
+     A  60                                  DSPATR(RI)
+     A  60                                  DSPATR(PC)
+     A                                  8  7'Type of Vehicle:'
+     A            VEHICLE        1   B  8 30VALUES('L' 'H' 'M')
+     A  61                                  DSPATR(RI)
+     A  61                                  DSPATR(PC)
+     A  99                                  DSPATR(PR)
+     A                                  8 32'(L - Light, H - Heavy, M - Multipl-
+     A                                      e Heavy)'
+     A                                 10  7'Time of Day:'
+     A            HOUR           2  0B 10 28RANGE(1 12)
+     A  99                                  DSPATR(PR)
+     A  62                                  DSPATR(RI)
+     A  62                                  DSPATR(PC)
+     A                                 10 32'(01 -12)'
+     A            AMPM           2   B 10 42VALUES('AM' 'PM')
+     A  99                                  DSPATR(PR)
+     A  63                                  DSPATR(RI)
+     A  63                                  DSPATR(PC)
+     A                                 10 46'(AM or PM)'
+     A                                 12  7'Transponder:'
+     A            TRANSPNDR      1A  B 12 29
+     A  99                                  DSPATR(PR)
+     A  64                                  DSPATR(RI)
+     A  64                                  DSPATR(PC)
+     A                                      VALUES('Y' 'N')
+     A                                 12 32'(Y N)'
+     A          R SHOWTOLL
+     A                                      CF03(03)
+     A                                      OVERLAY
+     A                                 13 23'Applicable Toll Charges'
+     A                                 15 11'Toll Rate:'
+     A            TOLLRATE       5Y 4O 15 36EDTCDE(1 $)
+     A                                 17  9' Toll Charge:'
+     A            TOLLCHARGE     5Y 2O 17 36EDTCDE(1 $)
+     A                                 23  3'F3 - Exit'
+     A                                 19 10'No Transponder Charge:'
+     A            NOTRANSP       4  2O 19 38EDTCDE(1)
+     A                                 21 11'T o t a l   C h a r g e:'
+     A            TOTALDUE       5  2O 21 37EDTWRD('   .  ') 

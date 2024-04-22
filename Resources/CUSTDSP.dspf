@@ -1,0 +1,45 @@
+     A                                      DSPSIZ(24 80 *DS3)
+     A                                      INDARA
+     A                                      CF03(03)
+     A          R ENROL
+     A                                  8  3'First Name:'
+     A            FIRSTNAME     25A  B  8 16COMP(NE ' ')
+     A                                      CHECK(LC)
+     A  96                              8 49'Must not be blank'
+     A                                 10  3'Last Name:'
+     A            LASTNAME      30A  B 10 16COMP(GT ' ')
+     A                                      CHECK(LC)
+     A  97                             10 49'Must not be blank'
+     A                                 12  7'Phone:'
+     A            PHONEN        10  0B 12 14EDTCDE(4)
+     A  98                             12 49'Must not be zero'
+     A                                  5  9'E N T E R    C U S T O M E R   I N-
+     A                                       F O R M A T I O N'
+     A                                 16  7'F3 - EXIT'
+     A                                  1 16'C U S T P G M     P R O G R A M'
+     A                                  3  3'Customers added this session:'
+     A            LOCALCOUNT     3S 0O  3 35
+     A          R ENROLOUT
+     A                                  5  3'First Name:'
+     A            FIRSTNAME     25A  O  5 17
+     A                                  7  3'Last Name:'
+     A            LASTNAME      30A  O  7 17
+     A                                  9  3'Phone:'
+     A N20        PHONEOUT      10Y 0O  9 17EDTWRD('0(   )&   -    ')
+     A  20        PHONE         10   O  9 17
+     A                                 11  3'Date Customer Added:'
+     A            DATEADDED       L  O 11 25
+     A            TIMEADDED       T  O 11 38
+     A                                 15  7'Skip Viewing All Records - F3'
+     A            TITLE         44   O  2 22
+     A          R OPTION
+     A                                  2 22'E N C R Y P T E D   C U S T O M E -
+     A                                      R   F I L E'
+     A                                  6 16'1. Add Coded Customer File Records'
+     A                                  8 16'2. Decode and View Existing Record-
+     A                                      s'
+     A                                 12 22'Option:'
+     A            SELECTION      1A  I 12 31
+     A  99                                  ERRMSG('INVALID OPTION')
+     A                                 15 11'F3 - Exit'
+     A                                 10 16'3. View Encrypted Records' 

@@ -1,0 +1,30 @@
+     A          R RECORD1
+     A            DAYHRS    R    5Y 2O  6 45REFFLD(SHIFTRATES/DAYHRS +
+     A                                      SENECAPAY/SHIFTRATES)
+     A                                      EDTCDE(1)
+     A            NIGHTHRS  R    5Y 2O  7 45REFFLD(SHIFTRATES/NIGHTHRS +
+     A                                      SENECAPAY/SHIFTRATES)
+     A                                      EDTCDE(1)
+     A            AFTHRS    R    5Y 2O  8 45REFFLD(SHIFTRATES/AFTHRS +
+     A                                      SENECAPAY/SHIFTRATES)
+     A                                      EDTCDE(1)
+     A                                  2  3USER
+     A                                  3  3'Mauricio Barros'
+     A                                  2 36'S E N E C A'
+     A                                  3 34'Payroll Program'
+     A                                  2 70DATE
+     A                                      EDTCDE(Y)
+     A                                  3 70TIME
+     A                                  5 15'Rates:'
+     A                                  6 25'Day Hours:'
+     A                                  7 25'Afternoon Hours:'
+     A                                  8 25'Night Hours:'
+     A                                 11 14'Totals:'
+     A                                 12 25'Regular Pay:'
+     A                                 13 25'Overtime Pay:'
+     A                                 14 25'Company Payout:'
+     A            TOTREGPAY      9Y 2O 12 46EDTCDE(1)
+     A            TOTWKPAY       9Y 2O 14 45EDTCDE(1 $)
+     A            TOTOVTPAY      9Y 2O 13 46EDTCDE(1)
+     A            SHIFTTYPE     30   O 10 26
+ 

@@ -1,0 +1,13 @@
+/**************************************/
+/* USROBJPRG - DISPLAY USER OBJECTS   */
+/*                                    */
+/* CODED BY: MAURICIO BARROS          */
+/*                                    */
+/* STUDENT ID: 122509227              */
+/*                                    */
+/* SIGNATURE ________________________ */
+/**************************************/
+
+DSPSYSVAL QUSRLIBL
+DSPMSG
+WRKSPLF 

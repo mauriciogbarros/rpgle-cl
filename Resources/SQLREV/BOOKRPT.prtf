@@ -1,0 +1,66 @@
+     A          R TITLE
+     A                                  1 41'Customer Purchase Report'
+     A                                  1120'Page:'
+     A                                  1126PAGNBR
+     A                                  3  3 ' '
+     A                                  1  4'System Name:'
+     A            SYSTEMNAME    10      1 18
+     A            REPRTTITLE    15      1 71
+     A            REPORTDATE      L     1107
+     A          R COLHDG                    SPACEB(1)
+     A                                      SPACEA(1)
+     A                                     6'Customer'
+     A                                    22'Book Purchased'
+     A                                    65'Purchase'
+     A                                    79'Genre'
+     A                                    96'Qty'
+     A                                   101'Price'
+     A                                   108'Discount'
+     A                                   118'Unit'
+     A                                   124'Extended'
+     A                                     6'Number'
+     A                                      SPACEB(1)
+     A                                    66'Date'
+     A                                   117'Price'
+     A                                   126'Price'
+     A          R DETAIL
+     A            CUSTNUM   R              2REFFLD(BKCUSTOMER/CUSTNUM +
+     A                                      BCI433LIB/BKCUSTOMER)
+     A                                      SPACEB(1)
+     A            BOOK      R             12REFFLD(AUDIBLEBKS/BOOK BCI433LIB/AU-
+     A                                      DIBLEBKS)
+     A            PDATE     R     L       63REFFLD(BKCUSTOMER/PDATE BCI433LIB/B-
+     A                                      KCUSTOMER)
+     A            GENRE     R             74REFFLD(AUDIBLEBKS/GENRE BCI433LIB/A-
+     A                                      UDIBLEBKS)
+     A            QTY       R             96REFFLD(BKCUSTOMER/QTY BCI433LIB/BKC-
+     A                                      USTOMER)
+     A            PRICE     R            102REFFLD(AUDIBLEBKS/PRICE BCI433LIB/A-
+     A                                      UDIBLEBKS)
+     A                                      EDTCDE(1)
+     A            DISCOUNT  R            111REFFLD(BKCUSTOMER/DISCOUNT +
+     A                                      BCI433LIB/BKCUSTOMER)
+     A                                      EDTCDE(2)
+     A            DISPRICE       5  2    117EDTCDE(1)
+     A            EXPRICE        5  2    125EDTCDE(1)
+     A          R TOTALS
+     A                                    76'Totals Books Sold:'
+     A                                      SPACEB(2)
+     A            TOTQTY         3  0     95
+     A                                      EDTCDE(1)
+     A                                     6'Highest Customer Quantity'
+     A                                      SPACEB(2)
+     A            MOSTBOOKS      3  0     34EDTCDE(1)
+     A                                     6'Total BkCustomer Records:'
+     A                                      SPACEB(1)
+     A            BKCUSTTOT      3  0     34EDTCDE(1)
+
+     A*%%RS+<record-sequences>
+     A*%%RS+ <sequence name="REPORT1">
+     A*%%RS+  <device type="printer" width="132" height="66" />
+     A*%%RS+  <record-write record-format="TITLE" />
+     A*%%RS+  <record-write record-format="COLHDG" />
+     A*%%RS+  <record-write record-format="DETAIL" />
+     A*%%RS+  <record-write record-format="TOTALS" />
+     A*%%RS+ </sequence>
+     A*%%RS </record-sequences> 
